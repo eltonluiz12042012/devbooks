@@ -11,5 +11,5 @@ func main() {
 	fmt.Println("API is running!!!")
 	r := router.Gerar()
 
-	Log.Fatal(http.ListenAndServe(":5000", r))
+	log.Fatal(http.ListenAndServe(":5000", r))
 }
