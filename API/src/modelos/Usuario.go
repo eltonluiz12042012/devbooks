@@ -2,7 +2,6 @@ package modelos
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 	"time"
 )
@@ -17,7 +16,6 @@ type Usuario struct {
 }
 
 func (usuario *Usuario) Preparar() error {
-	fmt.Println("Chamando pacote usuário")
 	if erro := usuario.validar(); erro != nil {
 		return erro
 	}
