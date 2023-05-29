@@ -3,8 +3,9 @@ package main
 import (
 	"api/src/config"
 	"api/src/router"
-	//"encoding/base64"
 	"fmt"
+
+	//"encoding/base64"
 	"log"
 	//"math/rand"
 	"net/http"
@@ -25,8 +26,6 @@ func main() {
 	config.Carregar()
 	fmt.Printf("API is running at port:%d", config.Porta)
 	r := router.Gerar()
-
-	fmt.Println(config.Secretkey)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Porta), r))
 }
