@@ -3,6 +3,7 @@ package rotas
 import (
 	"api/src/controllers"
 	"net/http"
+
 )
 
 var rotasUsuarios = []Rota{
@@ -53,7 +54,7 @@ var rotasUsuarios = []Rota{
 	},
 	{
 		URI:                "/usuarios/{usuarioId}/seguidores",
-		Metodo:             http.MethodPost,
+		Metodo:             http.MethodGet,
 		Funcao:             controllers.BuscarSeguidores,
 		RequerAutenticacao: true,
 	},
