@@ -57,7 +57,7 @@ func ExtrairUsuarioID(r *http.Request) (uint64, error) {
 func extrairToken(r *http.Request) string {
 	token := r.Header.Get("Authorization")
 	//	fmt.Println(token)
-	fmt.Println(strings.Split(token, " ")[1])
+	//fmt.Println(strings.Split(token, " ")[1])
 	if len(strings.Split(token, " ")) == 2 {
 		return strings.Split(token, " ")[1]
 	}
