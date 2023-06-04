@@ -8,8 +8,10 @@ import (
 	"api/src/respostas"
 	"api/src/seguranca"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -39,15 +41,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if erro = seguranca.VerificaSenha(usuarioSalvoNoBanco.Senha, usuario.Senha); erro != nil {
-		respostas.Erro(w, http.StatusUnauthorized, erro)
+		respostas.Erro(w, http.StatusUnauthorized, errors.New("Usuário ou senha incorretos"))
 		return
 	}
 
-	token, _ := autenticacao.CriarToken(usuarioSalvoNoBanco.ID)
+	token, erro := autenticacao.CriarToken(usuarioSalvoNoBanco.ID)
 	if erro != nil {
 		respostas.Erro(w, http.StatusInternalServerError, erro)
 		return
 	}
-	w.Write([]byte(token))
+	usuaerioID := strconv.FormatUint(usuarioSalvoNoBanco.ID, 10)
+	respostas.JSON(w, http.StatusOK, modelos.DadosAutenticacao{ID: usuaerioID, Token: token})
 
 }
